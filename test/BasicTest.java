@@ -8,6 +8,12 @@ import models.*;
 
 public class BasicTest extends UnitTest {
 
+	@SuppressWarnings("deprecation")
+	@Before
+	public void setup(){
+		Fixtures.deleteAll();
+	}
+
     @Test
     public void aVeryImportantThingToTest() {
         assertEquals(2, 1 + 1);
@@ -33,4 +39,26 @@ public class BasicTest extends UnitTest {
 
     }
 
+    @Test
+    public void createPost(){
+    	User bob = new User("bob@example.com", "secret", "Bob").save();
+
+    	new Post(bob, "My first post", "Hello world").save();
+
+    	assertEquals(1, Post.count());
+
+    	List<Post> bobPosts = Post.find("byAuthor", bob).fetch();
+
+    	assertEquals(1, bobPosts.size());
+    	Post firstPost = bobPosts.get(0);
+    	assertNotNull(firstPost);
+    	assertEquals(bob, firstPost.author);
+    	assertEquals("My first post", firstPost.title);
+    	assertEquals("Hello world", firstPost.content);
+    	assertNotNull(firstPost.postedAt);
+
+
+
+
+    }
 }
