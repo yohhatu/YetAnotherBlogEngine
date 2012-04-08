@@ -1,10 +1,14 @@
-import org.junit.*;
-import java.util.*;
+import java.util.List;
 
-import javax.jws.soap.SOAPBinding.Use;
+import models.Comment;
+import models.Post;
+import models.User;
 
-import play.test.*;
-import models.*;
+import org.junit.Before;
+import org.junit.Test;
+
+import play.test.Fixtures;
+import play.test.UnitTest;
 
 public class BasicTest extends UnitTest {
 
@@ -110,7 +114,36 @@ public class BasicTest extends UnitTest {
     	assertEquals(0, Post.count());
     	assertEquals(0, Comment.count());
 
+    }
 
+    @Test
+    public void fullTest(){
+    	Fixtures.loadModels("data.yml");
+
+    	assertEquals(2, User.count());
+    	assertEquals(3, Post.count());
+    	assertEquals(3, Comment.count());
+
+    	assertNotNull(User.connect("bob@gmail.com", "secret"));
+       	assertNotNull(User.connect("jeff@gmail.com", "secret"));
+    	assertNull(User.connect("bob@gmail.com", "badpassword"));
+    	assertNull(User.connect("tom@example.com", "secret"));
+
+    	List<Post> bobPosts = Post.find("author.email","bob@gmail.com").fetch();
+    	assertEquals(2, bobPosts.size());
+
+    	List<Post> bobComments = Comment.find("post.author.email","bob@gmail.com").fetch();
+    	assertEquals(3, bobComments.size());
+
+    	Post frontPost = Post.find("order by postedAt desc").first();
+    	assertNotNull(frontPost);
+    	assertEquals("About the model layer", frontPost.title);
+
+    	assertEquals(2, frontPost.comments.size());
+
+    	frontPost.addComment("Jim", "Hello guys");
+    	assertEquals(3, frontPost.comments.size());
+    	assertEquals(4, Comment.count());
 
     }
 
