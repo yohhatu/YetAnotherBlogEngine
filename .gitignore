@@ -2,8 +2,12 @@
 /modules
 /lib
 /test-result
+/log
 /logs
-
+/db
+/log
+/precompiled
+/server.pid
 /eclipse
 .project
 .settings
