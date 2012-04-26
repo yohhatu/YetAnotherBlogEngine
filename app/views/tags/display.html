@@ -12,7 +12,7 @@
 			&nbsp;|&nbsp; ${_post.comments.size() ?: 'no'}
 			comment${_post.comments.size().pluralize()}
 			#{if _post.comments}
-				 , latest by ${frontPost.comments[0].author}
+				 , latest by ${_post.comments[0].author}
 			#{/if}
 			</span>
 		#{/if}
