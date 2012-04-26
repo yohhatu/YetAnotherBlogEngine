@@ -19,8 +19,6 @@ public class Application extends Controller {
     	Post frontPost = Post.find("order by postedAt desc").first();
     	List<Post> olderPosts = Post.find("order by postedAt desc").from(1).fetch(10);
     	render(frontPost, olderPosts);
-//    	System.out.println("Yop");
-//        render();
     }
 
 }
