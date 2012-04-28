@@ -2,6 +2,7 @@ package controllers;
 
 import play.*;
 import play.data.validation.Required;
+import play.libs.Images;
 import play.mvc.*;
 
 import java.util.*;
@@ -36,6 +37,11 @@ public class Application extends Controller {
     	post.addComment(author, content);
     	flash.success("%s コメントありがとうございます。", author);
     	show(postId);
+    }
+
+    public static void captcha(){
+    	Images.Captcha captcha = Images.captcha();
+    	renderBinary(captcha);
     }
 
 }
