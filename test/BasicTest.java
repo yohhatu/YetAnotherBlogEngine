@@ -1,5 +1,7 @@
 import java.util.List;
 
+import javax.jws.soap.SOAPBinding.Use;
+
 import models.Comment;
 import models.Post;
 import models.User;
@@ -147,5 +149,21 @@ public class BasicTest extends UnitTest {
 
     }
 
+    @Test
+    public void testTags(){
+    	User bob = new User("bob@gmail.com", "secret", "Bob").save();
+
+    	Post bobPost = new Post(bob, "My first post", "Hello world").save();
+    	Post anothrerBobPost = new Post(bob, "Hop", "Hello world").save();
+
+    	assertEquals(0, Post.findTaggedWith("Red").size());
+
+    	bobPost.tagItWith("Red").tagItWith("Blue").save();
+    	anothrerBobPost.tagItWith("Red").tagItWith("Green").save();
+
+    	assertEquals(2, Post.findTaggedWith("Red").size());
+    	assertEquals(1, Post.findTaggedWith("Blue").size());
+    	assertEquals(1, Post.findTaggedWith("Green").size());
+    }
 
 }
