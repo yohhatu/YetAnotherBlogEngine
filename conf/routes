@@ -1,7 +1,9 @@
 # Routes
-GET	/posts/{id}	Application.show
+GET	/posts/{<[0-9]+>id}	Application.show
 POST /posts/{postId}/comments	Applicatoin.postComment
 GET	/captcha	Application.captcha
+GET /posts/{tag}	Application.listTagged
+
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 

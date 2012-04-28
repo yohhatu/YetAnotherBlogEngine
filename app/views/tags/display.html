@@ -20,7 +20,7 @@
 			<span class="post-tags">
 				-Tagged
 				#{list items:_post.tags, as:'tag'}
-					<a href="#">${tag}</a>${tag_isLast ? '' : ', '}
+					<a href="@{Application.listTagged(tag.name)}">${tag}</a>${tag_isLast ? '' : ', '}
 				#{/list}
 			</span>
 		#{/elseif}
