@@ -3,6 +3,7 @@ package controllers;
 import play.*;
 import play.cache.Cache;
 import play.data.validation.Required;
+import play.libs.Codec;
 import play.libs.Images;
 import play.mvc.*;
 
@@ -26,7 +27,8 @@ public class Application extends Controller {
 
     public static void show(Long id) {
     	Post post = Post.findById(id);
-    	render(post);
+    	String randomID = Codec.UUID();
+    	render(post, randomID);
 	}
 
     public static void postComment(Long postId, @Required String author, @Required String content){
