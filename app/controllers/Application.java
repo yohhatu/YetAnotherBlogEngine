@@ -34,6 +34,7 @@ public class Application extends Controller {
 		}
 
     	post.addComment(author, content);
+    	flash.success("%s コメントありがとうございます。", author);
     	show(postId);
     }
 

@@ -1,5 +1,6 @@
 # Routes
 GET	/posts/{id}	Application.show
+POST /posts/{postId}/comments	Applicatoin.postComment
 
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
