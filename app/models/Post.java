@@ -15,18 +15,27 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Cascade;
 
+import play.data.validation.MaxSize;
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
 public class Post extends Model {
 
+	@Required
 	public String title;
+
+	@Required
 	public Date postedAt;
 
 	@Lob
+	@Required
+	@MaxSize(10000)
 	public String content;
 
 	@ManyToOne
+	@Required
+
 	public User author;
 
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
