@@ -1,6 +1,9 @@
 # Import CRUD routes
 *	/admin	module:crud
 
+# Import Secure routes
+*	/
+
 # Routes
 GET	/posts/{<[0-9]+>id}	Application.show
 POST /posts/{postId}/comments	Applicatoin.postComment
