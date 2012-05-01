@@ -29,7 +29,7 @@
         		<li class="${request.controller == 'Admin' ? 'selected' : ''}">
         			<a href="@{Admin.index()}">My posts</a>
         		</li>
-        		#{secure.check 'admin'}]
+        		#{secure.check 'admin'}
         		<li class="${request.controller == 'Posts' ? 'selected' : ''}">
         			<a href="@{Posts.list()}">Posts</a>
         		</li>
