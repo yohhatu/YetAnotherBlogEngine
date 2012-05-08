@@ -1,10 +1,10 @@
-# Administration
-GET /admin/?	Admin.index
-*	/admin	module:crud
-GET	/admin/myPosts/{id}	Admin.form
-GET /admin/new	Admin.form
-POST	/admin/myPosts/{id}	Admin.save
-POST /admin/new	Admin.save
+# Adminstration
+GET     /admin/?                                Admin.index
+GET     /admin/myPosts/{id}                     Admin.form
+POST    /admin/myPosts/{id}                     Admin.save
+GET     /admin/new                              Admin.form
+POST    /admin/new                              Admin.save
+*       /admin                                  module:crud
 
 # Import Secure routes
 *	/
