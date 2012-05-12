@@ -19,17 +19,19 @@ public class ApplicationTest extends FunctionalTest {
     public void testAdminSecurity() {
         Response response = GET("/admin/users");
         assertStatus(302, response);
-//        assertHeaderEquals("Location", "/login", response);
+        assertHeaderEquals("Location", "/secure/login", response);
 
         response = GET("/admin/posts");
         assertStatus(302, response);
+        assertHeaderEquals("Location", "/secure/login", response);
 
         response = GET("/admin/comments");
         assertStatus(302, response);
+        assertHeaderEquals("Location", "/secure/login", response);
 
         response = GET("/admin/tags");
         assertStatus(302, response);
-
+        assertHeaderEquals("Location", "/secure/login", response);
 
     }
 
