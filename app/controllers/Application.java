@@ -41,8 +41,11 @@ public class Application extends Controller {
 			String randomID) {
 		Post post = Post.findById(postId);
 
-		validation.equals(code, Cache.get(randomID)).message(
-				"文字列が正しくありません。再度入力してください");
+		if(!Play.id.equals("test")){
+			validation.equals(code, Cache.get(randomID)).message(
+					"文字列が正しくありません。再度入力してください");
+		}
+
 		if (validation.hasErrors()) {
 			render("Application/show.html", post, randomID);
 		}
