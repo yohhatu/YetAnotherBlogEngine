@@ -17,9 +17,20 @@ public class ApplicationTest extends FunctionalTest {
 
     @Test
     public void testAdminSecurity() {
-        Response response = GET("/admin");
+        Response response = GET("/admin/users");
         assertStatus(302, response);
-        assertHeaderEquals("Location", "/login", response);
+//        assertHeaderEquals("Location", "/login", response);
+
+        response = GET("/admin/posts");
+        assertStatus(302, response);
+
+        response = GET("/admin/comments");
+        assertStatus(302, response);
+
+        response = GET("/admin/tags");
+        assertStatus(302, response);
+
+
     }
 
 }
